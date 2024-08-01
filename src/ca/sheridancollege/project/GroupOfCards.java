@@ -23,6 +23,8 @@ public class GroupOfCards {
 
     public GroupOfCards(int size) {
         this.size = size;
+        this.cards = new ArrayList<>(size);
+        initializeDeck();
     }
 
     /**
@@ -50,6 +52,36 @@ public class GroupOfCards {
      */
     public void setSize(int size) {
         this.size = size;
+    }
+    
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+    
+    public void initializeDeck() {
+        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+        String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+
+        // Clear existing cards and set size to 0 before initializing deck
+        cards.clear();
+        int initialSize = 0;
+
+        for (String suit : suits) {
+            for (String rank : ranks) {
+                cards.add(new WarCard(rank, suit));
+                initialSize++;
+            }
+        }
+        this.size = initialSize; // Update size after deck initialization
+    }
+
+    public void deal(WarPlayer player1, WarPlayer player2) {
+        shuffle();
+        int halfDeckSize = size / 2;
+        for (int i = 0; i < halfDeckSize; i++) {
+            player1.addCardToHand((WarCard) cards.get(i));
+            player2.addCardToHand((WarCard) cards.get(i + halfDeckSize));
+        }
     }
 
 }//end class

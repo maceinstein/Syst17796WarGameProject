@@ -8,7 +8,7 @@ package ca.sheridancollege.project;
  *
  * @author User
  */
-public class WarCard {
+public class WarCard extends Card{
     
     private String rank;
     private String suit;
