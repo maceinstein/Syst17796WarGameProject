@@ -32,6 +32,7 @@ public class WarGame extends Game{
    public boolean validatePassword(String password) {
     if (password.length() <= 8) {
         System.out.println("Password must be longer than 8 characters.");
+        System.out.println("");
         return false;
     }
 
@@ -46,6 +47,8 @@ public class WarGame extends Game{
 
     if (!hasSpecial) {
         System.out.println("Password must contain at least one special character.");
+        System.out.println("");
+        
         return false;
     }
 
@@ -130,22 +133,27 @@ public class WarGame extends Game{
             WarCard card1 = player1.playCard();
             WarCard card2 = player2.playCard();
 
+            System.out.println("");
+            System.out.println("---------------------");
             System.out.println(player1.getUsername() + " plays: " + card1);
             System.out.println(player2.getUsername() + " plays: " + card2);
 
             int result = compareCards(card1, card2);
             if (result > 0) {
                 System.out.println(player1.getUsername() + " wins the round.");
+                System.out.println("---------------------");
                 player1.addCardToHand(card1);
                 player1.addCardToHand(card2);
                 player1RoundsWon++;
             } else if (result < 0) {
                 System.out.println(player2.getUsername() + " wins the round.");
+                System.out.println("---------------------");
                 player2.addCardToHand(card1);
                 player2.addCardToHand(card2);
                  player2RoundsWon++;
             } else {
                 System.out.println("War! Both players played " + card1.getRank());
+                System.out.println("---------------------");
                 triggerWar(player1, player2);
             }
         }
@@ -155,6 +163,7 @@ public class WarGame extends Game{
     
     
     public void detectWinner(WarPlayer winner) {
+        System.out.println("");
         System.out.println("The winner of the game is: " + winner.getUsername());
        
     }

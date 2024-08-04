@@ -62,7 +62,7 @@ public class WarGameTest {
     @Test
     public void testValidatePasswordBad() {
         System.out.println("Test validatePasswordBad");
-        String password = "";
+        String password = "Passw0rd";
         WarGame instance = new WarGame("TestWarGame");
         boolean expResult = false;
         boolean result = instance.validatePassword(password);
@@ -73,7 +73,7 @@ public class WarGameTest {
     @Test
     public void testValidatePasswordBoundary() {
         System.out.println("Test validatePasswordBoundary");
-        String password = "Passw0rd";
+        String password = "";
         WarGame instance = new WarGame("TestWarGame");
         boolean expResult = false;
         boolean result = instance.validatePassword(password);
@@ -117,7 +117,7 @@ public class WarGameTest {
     public void testCompareCardsBad() {
         //Bad = smaller
         System.out.println("compareCards Bad");
-        WarCard card1 = new WarCard("1", "Diamond");
+        WarCard card1 = new WarCard("2", "Diamond");
         WarCard card2 = new WarCard("5", "Diamond");
         WarGame instance = new WarGame("TestWarGame");
         int expResult = -1;

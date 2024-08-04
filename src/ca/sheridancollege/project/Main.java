@@ -13,25 +13,29 @@ import java.util.Scanner;
  */
 public class Main {
     public static ArrayList<Player> players = new ArrayList<>();
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
         WarGame warGame = new WarGame("War Card Game");
-        
+
         int playerCount = 1;
-        
-        
-        
+
+        System.out.println("=== Welcome to the War Card Game! ===");
+        System.out.println("====================================");
+
         while (playerCount < 2) {
-            System.out.println("Register Player " + (playerCount + 1));
+            System.out.println("\n--- Register Player " + (playerCount + 1) + " ---");
             boolean usernameValid; 
             String username;
             do {
                 System.out.print("Enter username: ");
                 username = scanner.nextLine();
                 usernameValid = verifyUsername(username);
-            } while (usernameValid == false);
-            
+                if (!usernameValid) {
+                    System.out.println("Username is already taken. Please enter a different username.");
+                }
+            } while (!usernameValid);
+
             // Input and validate password
             String password;
             boolean passwordValid;
@@ -47,8 +51,12 @@ public class Main {
             // Create and add the player to the game
             WarPlayer player = new WarPlayer(username, password);
             players.add(player);
+           
             playerCount++;
         }
+
+        System.out.println("\n=== All players are registered! ===");
+        System.out.println("Starting the game...");
 
         // Set players for the game
         warGame.setPlayers(players);
@@ -60,29 +68,28 @@ public class Main {
         // Start the game
         warGame.play();
 
+        System.out.println("\n=== Game Over! ===");
+        System.out.println("Thank you for playing the War Card Game!");
+
+        
         
     }
-    ////validate username
-    public static boolean verifyUsername(String name)
-        {
-        if (Main.players.isEmpty())
-            {
-            //for testing purpuse, we add one player named "bot"
+
+    // Validate username
+    public static boolean verifyUsername(String name) {
+        if (Main.players.isEmpty()) {
+            // For testing purposes, we add one player named "bot"
             WarPlayer bot = new WarPlayer("bot", "Passw0rd");
             players.add(bot);
-            }
-           
-        boolean usernameValid;
-        
+        }
+
+         boolean usernameValid;
         for (Player player : Main.players) {
             if (((WarPlayer) player).getUsername().equals(name)) {
-                System.out.println("Username is already taken. Please enter a different username.");
-                usernameValid = false;
-                return usernameValid;
+                return false; // Username is taken
             }
         }
-        usernameValid = true;
-        return usernameValid;
+        return true; // Username is unique
     }
     
 }
