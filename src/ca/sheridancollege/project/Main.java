@@ -12,33 +12,26 @@ import java.util.Scanner;
  * @author User
  */
 public class Main {
-    
+    public static ArrayList<Player> players = new ArrayList<>();
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Player> players = new ArrayList<>();
+        
         WarGame warGame = new WarGame("War Card Game");
-
-        int playerCount = 0;
+        
+        int playerCount = 1;
+        
+        
+        
         while (playerCount < 2) {
             System.out.println("Register Player " + (playerCount + 1));
-
-            // Input and verify username
+            boolean usernameValid; 
             String username;
-            boolean usernameValid;
             do {
                 System.out.print("Enter username: ");
                 username = scanner.nextLine();
-                usernameValid = true;
-
-                for (Player player : players) {
-                    if (((WarPlayer) player).getUsername().equals(username)) {
-                        System.out.println("Username is already taken. Please enter a different username.");
-                        usernameValid = false;
-                        break;
-                    }
-                }
-            } while (!usernameValid);
-
+                usernameValid = verifyUsername(username);
+            } while (usernameValid == false);
+            
             // Input and validate password
             String password;
             boolean passwordValid;
@@ -68,6 +61,28 @@ public class Main {
         warGame.play();
 
         
+    }
+    ////validate username
+    public static boolean verifyUsername(String name)
+        {
+        if (Main.players.isEmpty())
+            {
+            //for testing purpuse, we add one player named "bot"
+            WarPlayer bot = new WarPlayer("bot", "Passw0rd");
+            players.add(bot);
+            }
+           
+        boolean usernameValid;
+        
+        for (Player player : Main.players) {
+            if (((WarPlayer) player).getUsername().equals(name)) {
+                System.out.println("Username is already taken. Please enter a different username.");
+                usernameValid = false;
+                return usernameValid;
+            }
+        }
+        usernameValid = true;
+        return usernameValid;
     }
     
 }
