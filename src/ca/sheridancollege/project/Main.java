@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author User
+ * @author harneet
  */
 public class Main {
     public static ArrayList<Player> players = new ArrayList<>();

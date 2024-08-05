@@ -6,7 +6,7 @@ package ca.sheridancollege.project;
 
 /**
  *
- * @author User
+ * @author harneet
  */
 public class WarCard extends Card{
     

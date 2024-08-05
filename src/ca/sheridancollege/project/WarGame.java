@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author User
+ * @author harneet
  */
 public class WarGame extends Game{
     
