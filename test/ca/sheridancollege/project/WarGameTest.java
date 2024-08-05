@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author liufa
+ * @author Yiqing Zhou
  */
 public class WarGameTest {
     
