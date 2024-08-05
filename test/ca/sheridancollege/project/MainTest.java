@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Yiqing
+ * @author Yiqing Zhou
  */
 public class MainTest {
     
